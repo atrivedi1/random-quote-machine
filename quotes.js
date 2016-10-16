@@ -13,7 +13,7 @@ var getQuoteContent = function() {
     success: function(response) {
       var responseObj = JSON.parse(response);
       currentQuote = responseObj.quote;
-      currentAuthor = responseObj.author;
+      currentAuthor = "- " + responseObj.author;
       $(".quote_body").html("<span" + " class='quote_span'>" + currentQuote +"</span>")
       $(".quote_author").html("<span" + " class='author_span'>" + currentAuthor +"</span>")
     }
@@ -21,7 +21,7 @@ var getQuoteContent = function() {
 };
 
 var tweetQuote = function() {
-  $('.tweet_quote_button')
+  $('#tweet_quote_button')
     .attr('href',
       'https://twitter.com/intent/tweet?hashtags=quotes&related=freecodecamp&text=' +
       encodeURIComponent('"' + currentQuote + '" ' + currentAuthor)
@@ -30,7 +30,6 @@ var tweetQuote = function() {
 
 $(document).ready(function() {
   getQuoteContent();
-  $('.random_quote_machine_button').on('click', getQuoteContent);
-  $('.tweet_quote_button').on('click',tweetQuote);
+  $('#get_quote_button').on('click', getQuoteContent);
+  $('#tweet_quote_button').on('click',tweetQuote);
 })
-
